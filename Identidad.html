@@ -410,7 +410,7 @@ nav {
     background: var(--negro-light);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 80px;
     align-items: center;
     border-top: 1px solid rgba(255,255,255,0.05);
     background-image:url(Imagenes/nosotrosfondo.jpg);
@@ -419,10 +419,10 @@ nav {
      background-repeat: no-repeat ;
     
   }
-
   .mv-card {
-    background: var(--negro-light);
+    background: #333;
     padding: 32px 28px;
+    border-left: 3px solid var(--naranja);
   }
 
   .mision-label {
@@ -435,6 +435,12 @@ nav {
     align-items: center;
     gap: 12px;
   }
+  .mision-item {
+  background: rgba(0, 0, 0, 0.6); /* negro con transparencia */
+  padding: 28px 24px;
+  border-radius: 8px;
+  backdrop-filter: blur(6px); /* efecto vidrio */
+}
   .mision-label::before {
     content: '';
     width: 32px; height: 1px;
@@ -551,13 +557,13 @@ nav {
   .producto-card:hover { transform: translateY(-4px); }
 
 .producto-img {
-  width: 90%;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 24px auto;
-  overflow: hidden;
+    width: 50%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px auto;
+    overflow: hidden;
 }
 
   .producto-img svg { opacity: 0.4; }
@@ -599,10 +605,6 @@ nav {
     padding: 100px 5%;
     background: var(--negro-light);
     border-top: 1px solid rgba(255,255,255,0.05);
-     background-image:url(Imagenes/Contactofondo.jpg);
-     background-size:cover;
-     background-position: center;
-     background-repeat: no-repeat ;
   }
 
   .contacto-inner {
@@ -1150,9 +1152,7 @@ a.IDModal {
 
 <section id="nosotros">
   
-  <div>
-
-    <div class="mv-card">
+     <div class="mv-card">
       <h2 class="mision-title">
         <span class="highlight">Misión</span>
       </h2>
@@ -1177,7 +1177,7 @@ a.IDModal {
   </div>
 
   <div>
-    <div class="mision-grid">
+    <div class="mision-grid" style="margin-top:32px;">
       <div class="mision-item">
         <div class="mision-item-color" style="background:var(--naranja)"></div>
         <h4>Obras y Zanjeos</h4>
