@@ -410,7 +410,7 @@ nav {
     background: var(--negro-light);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 24px;
     align-items: center;
     border-top: 1px solid rgba(255,255,255,0.05);
     background-image:url(Imagenes/nosotrosfondo.jpg);
@@ -418,6 +418,11 @@ nav {
      background-position: center;
      background-repeat: no-repeat ;
     
+  }
+
+  .mv-card {
+    background: var(--negro-light);
+    padding: 32px 28px;
   }
 
   .mision-label {
@@ -430,12 +435,6 @@ nav {
     align-items: center;
     gap: 12px;
   }
-  .mision-item {
-  background: rgba(0, 0, 0, 0.6); /* negro con transparencia */
-  padding: 28px 24px;
-  border-radius: 8px;
-  backdrop-filter: blur(6px); /* efecto vidrio */
-}
   .mision-label::before {
     content: '';
     width: 32px; height: 1px;
@@ -1144,28 +1143,33 @@ a.IDModal {
 <section id="nosotros">
   
   <div>
-    
-    <h2 class="mision-title">
-      <span class="highlight">Misión</span>
-    </h2>
-    <div class="mision-body">
-      <p>
-        Desarrollar y ejecutar proyectos y obras que transformen espacios en soluciones funcionales, integrando diseño, ingeniería y planificación para crear obras con identidad, calidad y valor sostenible.
-      </p>
+
+    <div class="mv-card">
+      <h2 class="mision-title">
+        <span class="highlight">Misión</span>
+      </h2>
+      <div class="mision-body">
+        <p>
+          Desarrollar y ejecutar proyectos y obras que transformen espacios en soluciones funcionales, integrando diseño, ingeniería y planificación para crear obras con identidad, calidad y valor sostenible.
+        </p>
+      </div>
     </div>
 
-    <h2 class="mision-title" style="margin-top:40px;">
-       <span class="highlight">Visión</span>
-    </h2>
-    <div class="mision-body">
-      <p>
-        Ser un grupo desarrollador referente en la creación de proyectos y obras innovadoras, reconocidos por nuestra capacidad de integrar ideas, técnica y compromiso para construir espacios que perduren y generen valor en cada entorno.
-      </p>
+    <div class="mv-card" style="margin-top:24px;">
+      <h2 class="mision-title">
+         <span class="highlight">Visión</span>
+      </h2>
+      <div class="mision-body">
+        <p>
+          Ser un grupo desarrollador referente en la creación de proyectos y obras innovadoras, reconocidos por nuestra capacidad de integrar ideas, técnica y compromiso para construir espacios que perduren y generen valor en cada entorno.
+        </p>
+      </div>
     </div>
+
   </div>
 
   <div>
-    <div class="mision-grid" style="margin-top:32px;">
+    <div class="mision-grid">
       <div class="mision-item">
         <div class="mision-item-color" style="background:var(--naranja)"></div>
         <h4>Obras y Zanjeos</h4>
