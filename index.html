@@ -50,7 +50,7 @@ nav {
 }
 
 .logo img {
-  height: 200px;  
+  height: 170px;  
   width: auto;  
   display: block;
   transform: translateY(2px); 
@@ -225,7 +225,7 @@ nav {
 .hero h1 {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: clamp(6.2rem, 8vw, 6rem);
+    font-size: clamp(2.8rem, 8vw, 6rem);
     line-height: 0.95;
     text-transform: uppercase;
     margin-bottom: 39px;
@@ -840,31 +840,25 @@ nav {
   }
 
   .footer-logo {
-    display: flex; align-items: center; gap: 1600px;
+    display: flex; align-items: center; gap: 16px;
   }
 
   .footer-logo-box {
-   
     width: 100px; 
     height: 100px; 
-    
-   
-    border: 100px solid rgba(255,255,255,0.5); 
-    
+    border: 2px solid rgba(255,255,255,0.5); 
     display: flex; 
     align-items: center; 
     justify-content: center;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    
-    /* Fuente más grande para el "ID" */
     font-size: 1.3rem; 
 }
 
  .footer-logo-text {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
-  font-size: 10rem;   
+  font-size: clamp(1rem, 3vw, 1.8rem);   
   letter-spacing: 0.2em;
   opacity: 0.8;       
   text-transform: uppercase;
@@ -1047,28 +1041,120 @@ a.IDModal {
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── Hamburger button ── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1100;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--blanco);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
   @media (max-width: 1024px) {
     #servicios { grid-template-columns: repeat(2, 1fr); }
     .unidad { min-height: 320px; }
   }
 
   @media (max-width: 768px) {
-    .nav-links { display: none; }
+    /* Hamburger visible */
+    .nav-toggle { display: flex; }
+
+    /* Nav links: panel deslizable */
+    .nav-links {
+      display: flex !important;
+      flex-direction: column;
+      position: fixed;
+      top: 0; right: 0;
+      width: 80%;
+      max-width: 320px;
+      height: 100vh;
+      background: rgba(26,26,26,0.98);
+      padding: 100px 32px 40px;
+      gap: 8px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 1050;
+      overflow-y: auto;
+    }
+    .nav-links.open { transform: translateX(0); }
+
+    .nav-links a {
+      font-size: 1rem;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-wa { margin-top: 16px; justify-content: center; }
+
+    /* Dropdown en mobile: siempre visible */
+    .dropdown-menu {
+      display: block !important;
+      position: static;
+      transform: none;
+      border: none;
+      background: transparent;
+      padding: 0;
+      min-width: unset;
+    }
+    .dropdown-menu a {
+      padding: 10px 12px !important;
+    }
+    .sub-menu { display: block !important; }
+
+    /* Hero */
+    .hero { padding: 100px 5% 80px; }
+    .hero-desc { max-width: 100%; }
+    .hero-btns { flex-direction: column; gap: 12px; }
+    .btn-wa, .btn-outline { width: 100%; justify-content: center; }
+
+    /* Servicios */
     #servicios { grid-template-columns: 1fr 1fr; }
-    #nosotros { grid-template-columns: 1fr; gap: 48px; }
+
+    /* Mostrar descripción sin hover en touch */
+    .unidad-desc { max-height: 100px; }
+    .unidad-link { opacity: 1; transform: translateY(0); }
+
+    /* Nosotros */
+    #nosotros { grid-template-columns: 1fr; gap: 48px; padding: 60px 5%; }
+    .mision-grid { grid-template-columns: 1fr; }
+
+    /* Productos */
     .productos-grid { grid-template-columns: 1fr; }
     .productos-header { flex-direction: column; align-items: flex-start; }
+
+    /* Contacto */
     .contacto-inner { grid-template-columns: 1fr; gap: 48px; }
     .form-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; text-align: center; }
-    .footer-tagline { order: -1; }
+
+    /* Footer */
+    footer { flex-direction: column; text-align: center; align-items: center; }
+    .footer-logo { justify-content: center; }
+
+    /* Modal */
+    .modal { padding: 32px 20px; margin: 0 8px; }
+    .IDModal { left: 0; }
   }
 
   @media (max-width: 480px) {
     #servicios { grid-template-columns: 1fr; }
     .unidad { min-height: 260px; }
-    .unidad-desc { max-height: 60px; }
+    nav { height: 64px; }
+    .logo img { height: 46px; }
   }
+
 </style>
 </head>
 <body>
@@ -1076,6 +1162,9 @@ a.IDModal {
 <nav>
   <a href="#" class="logo">
     <img src="Imagenes/logocompleto.png" alt="IDENTIDAD" > </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
   <ul class="nav-links">
     <li class="dropdown">
       <a href="#servicios">Nuestros Servicios ▾</a>
@@ -1246,7 +1335,7 @@ a.IDModal {
 
     <div class="producto-card">
       <div class="producto-img">
-    <img src="Imagenes/tritubo.png" alt="Producto" style="width: 60%;height:100%;object-fit:cover;">
+    <img src="Imagenes/tritubo.png" alt="Producto" style="width: 75%;height:100%;object-fit:cover;">
 </div>
       <div class="produto-badge" style="font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--naranja); margin-bottom:8px; font-weight:600;">Caño PEAD</div>
       <div class="producto-name">Tritubo / Bitubo / Tubo</div>
@@ -1309,7 +1398,7 @@ a.IDModal {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div class="contacto-dato-text">
-            <small>identidad.desarrolladora@gmail.com</small>
+            <small><span class="__cf_email__" data-cfemail="bbd2dfded5cfd2dfdadf95dfdec8dac9c9d4d7d7dadfd4c9dafbdcd6dad2d795d8d4d6">[email&#160;protected]</span></small>
             
           </div>
         </a>
@@ -1470,7 +1559,7 @@ a.IDModal {
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function openModal(id) {
   document.getElementById('modal-' + id).classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1494,7 +1583,25 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-function enviarWA() {
+// Hamburger menu
+const navToggle = document.getElementById('navToggle');
+const navLinks  = document.querySelector('.nav-links');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+  });
+  // Cerrar al hacer click en un link
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
   var nombre   = document.getElementById('form-nombre')   ? document.getElementById('form-nombre').value.trim()   : '';
   var telefono = document.getElementById('form-telefono') ? document.getElementById('form-telefono').value.trim() : '';
   var servicio = document.getElementById('form-servicio') ? document.getElementById('form-servicio').value         : '';
@@ -1505,11 +1612,4 @@ function enviarWA() {
  var texto = 'Hola IDENTIDAD!%0A%0A' +
     '*Nombre:* '   + encodeURIComponent(nombre)                       + '%0A' +
     '*Teléfono:* ' + encodeURIComponent(telefono || 'No indicado')    + '%0A' +
-    '*Servicio:* ' + encodeURIComponent(servicio || 'Sin especificar') + '%0A' +
-    '*Mensaje:* '  + encodeURIComponent(mensaje  || 'Sin mensaje');
-
-  window.open('https://wa.me/5491162418198?text=' + texto, '_blank');
-}
-</script>
-</body>
-</html>
+    '*Servicio:* ' + encodeURIComponent(
