@@ -1595,6 +1595,7 @@ if (navToggle && navLinks) {
   });
 }
 
+ function enviarWA() {
   var nombre   = document.getElementById('form-nombre')   ? document.getElementById('form-nombre').value.trim()   : '';
   var telefono = document.getElementById('form-telefono') ? document.getElementById('form-telefono').value.trim() : '';
   var servicio = document.getElementById('form-servicio') ? document.getElementById('form-servicio').value         : '';
@@ -1602,7 +1603,14 @@ if (navToggle && navLinks) {
 
   if (!nombre) { alert('Por favor ingresá tu nombre.'); return; }
 
- var texto = 'Hola IDENTIDAD!%0A%0A' +
+  var texto = 'Hola IDENTIDAD!%0A%0A' +
     '*Nombre:* '   + encodeURIComponent(nombre)                       + '%0A' +
     '*Teléfono:* ' + encodeURIComponent(telefono || 'No indicado')    + '%0A' +
-    '*Servicio:* ' + encodeURIComponent(
+    '*Servicio:* ' + encodeURIComponent(servicio || 'Sin especificar') + '%0A' +
+    '*Mensaje:* '  + encodeURIComponent(mensaje  || 'Sin mensaje');
+
+  window.open('https://wa.me/5491162418198?text=' + texto, '_blank');
+}
+</script>
+</body>
+</html>
